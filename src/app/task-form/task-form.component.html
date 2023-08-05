@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="box">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <label>Nombre</label>
+        <input matInput type="text" formControlName="name" required>
+        <mat-error *ngIf="taskForm.get('name')?.invalid && taskForm.get('name')?.touched">
+          Nombre es requerido y debe tener menos de 50 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>Descripción</label>
+        <textarea matInput formControlName="description" required></textarea>
+        <mat-error *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched">
+          Descripción es requerida y debe tener menos de 200 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>Fecha de Vencimiento</label>
+        <input matInput [matDatepicker]="picker" formControlName="expirationDate" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="taskForm.get('expirationDate')?.invalid && taskForm.get('expirationDate')?.touched">
+          Fecha de vencimiento es requerida.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>Estado</label>
+        <mat-select formControlName="isComplete" required>
+          <mat-option value="false">Incompleta</mat-option>
+          <mat-option value="true">Completada</mat-option>
+        </mat-select>
+        <mat-error *ngIf="taskForm.get('isComplete')?.invalid && taskForm.get('isComplete')?.touched">
+          Estado es requerido.
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">Guardar</button>
+    </form>
+  </div>
+</div>

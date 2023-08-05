@@ -1,0 +1,43 @@
+<div class="task-list">
+  <h2>Lista de Tareas</h2>
+  <button mat-raised-button color="primary" (click)="goToCreateTask()">Crear Tarea</button>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let task"> {{ task.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Descripción </th>
+      <td mat-cell *matCellDef="let task"> {{ task.description }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expirationDate">
+      <th mat-header-cell *matHeaderCellDef> Fecha de Vencimiento </th>
+      <td mat-cell *matCellDef="let task"> {{ task.expirationDate | date }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="isComplete">
+      <th mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell *matCellDef="let task" [ngClass]="task.isComplete ? 'completed' : 'incomplete'">
+        {{ task.isComplete ? 'Completada' : 'Incompleta' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let task">
+        <button mat-icon-button color="primary" (click)="updateTask(task.id, task.isComplete)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

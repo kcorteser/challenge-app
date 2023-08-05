@@ -1,0 +1,12 @@
+.task-list {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.completed {
+  color: green;
+}
+
+.incomplete {
+  color: red;
+}

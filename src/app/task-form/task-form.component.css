@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ajusta la altura para centrar verticalmente */
+}
+
+.box {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 400px;
+  background-color: #fff;
+}
